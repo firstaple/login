@@ -1,0 +1,93 @@
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 606.5px;
+}
+
+.login_form {
+  min-width: 1280;
+}
+
+.login_form h1 {
+  margin-bottom: 0;
+}
+
+.login_form a {
+  font-size: small;
+  color: coral;
+}
+
+.login_form div span {
+}
+
+.login_form form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+}
+
+.login_form form input {
+  border-radius: 5px;
+  padding-left: 5%;
+}
+
+.login_form form div {
+  display: flex;
+  margin: 5% 0;
+}
+
+.login_form form div input {
+  margin-left: 0;
+}
+
+.login_form form div label {
+  font-size: small;
+}
+
+.login_form form button {
+  border-radius: 5px;
+}
+
+.another_login {
+  position: relative;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.another_login .another_login_title {
+  background-color: white;
+  padding: 0 3%;
+  font-size: small;
+}
+
+.another_login .another_login_title_border {
+  position: absolute;
+  width: 100%;
+  border-top: 1px solid black;
+  top: 19%;
+  z-index: -1;
+}
+
+.another_login_platform {
+  display: flex;
+  justify-content: space-between;
+  margin: 5% 0;
+}
+
+.another_login_platform span {
+  padding: 3%;
+  border-radius: 5px;
+}
+
+.another_login_platform .platform_google {
+  color: red;
+  border: 1px solid red;
+}
+
+.another_login_platform .platform_facebook {
+  color: blue;
+  border: 1px solid blue;
+}
