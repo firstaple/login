@@ -7,63 +7,63 @@
   width: 607px;
 }
 
-.login_form {
+.signUp_form {
   width: 100%;
 }
 
-.login_form h1 {
+.signUp_form h1 {
   margin-bottom: 0;
 }
 
-.login_form a {
+.signUp_form a {
   font-size: small;
   color: coral;
 }
 
-.login_form div span {
+.signUp_form div span {
 }
 
-.login_form form {
+.signUp_form form {
   display: flex;
   flex-direction: column;
   margin-top: 5%;
 }
 
-.login_form form input {
+.signUp_form form input {
   border-radius: 5px;
   padding-left: 5%;
 }
 
-.login_form form div {
+.signUp_form form div {
   display: flex;
   margin: 5% 0;
 }
 
-.login_form form div input {
+.signUp_form form div input {
   margin-left: 0;
 }
 
-.login_form form div label {
+.signUp_form form div label {
   font-size: small;
 }
 
-.login_form form button {
+.signUp_form form button {
   border-radius: 5px;
 }
 
-.another_login {
+.another_signUp {
   position: relative;
   text-align: center;
   margin-top: 5%;
 }
 
-.another_login .another_login_title {
+.another_signUp .another_signUp_title {
   background-color: white;
   padding: 0 3%;
   font-size: small;
 }
 
-.another_login .another_login_title_border {
+.another_signUp .another_signUp_title_border {
   position: absolute;
   width: 100%;
   border-top: 1px solid black;
@@ -71,23 +71,23 @@
   z-index: -1;
 }
 
-.another_login_platform {
+.another_signUp_platform {
   display: flex;
   justify-content: space-between;
   margin: 5% 0;
 }
 
-.another_login_platform button {
+.another_signUp_platform button {
   padding: 3%;
   border-radius: 5px;
 }
 
-.another_login_platform .platform_google {
+.another_signUp_platform .platform_google {
   color: red;
   border: 1px solid red;
 }
 
-.another_login_platform .platform_facebook {
+.another_signUp_platform .platform_facebook {
   color: blue;
   border: 1px solid blue;
 }

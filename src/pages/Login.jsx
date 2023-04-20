@@ -16,7 +16,7 @@ const Login = () => {
           <input type="password" placeholder="your password" />
           <Link>Forgot Password?</Link>
           <div>
-            <input type="radio" />
+            <input type="checkBox" />
             <label>Remember me</label>
           </div>
           <button>Login</button>
@@ -25,8 +25,8 @@ const Login = () => {
           <span className={styles.another_login_title}>of login with</span>
           <div className={styles.another_login_title_border}></div>
           <div className={styles.another_login_platform}>
-            <span className={styles.platform_google}>Google</span>
-            <span className={styles.platform_facebook}>Facebook</span>
+            <button className={styles.platform_google}>Google</button>
+            <button className={styles.platform_facebook}>Facebook</button>
           </div>
         </div>
       </div>
