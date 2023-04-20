@@ -11,11 +11,11 @@ const SignUp = () => {
         <Link to="/">Login</Link>
         <form action="">
           <label>email</label>
-          <input type="email" placeholder="your@email.com" />
+          <input type="email" placeholder="your@email.com" required />
           <label>password</label>
-          <input type="password" placeholder="your password" />
+          <input type="password" placeholder="your password" required />
           <label>confirm password</label>
-          <input type="password" placeholder="confirm password" />
+          <input type="password" placeholder="confirm password" required />
           <div>
             <input type="checkbox" />
             <label>Log in right away</label>

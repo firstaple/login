@@ -7,61 +7,56 @@
   width: 607px;
 }
 
-.signUp_form {
+.myPage_form {
   width: 100%;
 }
 
-.signUp_form h1 {
+.myPage_form h1 {
   margin-bottom: 0;
 }
 
-.signUp_form a {
-  font-size: small;
-  color: coral;
-}
-
-.signUp_form form {
+.myPage_form form {
   display: flex;
   flex-direction: column;
   margin-top: 5%;
 }
 
-.signUp_form form input {
+.myPage_form form input {
   border-radius: 5px;
   padding-left: 5%;
   margin-top: 2%;
 }
 
-.signUp_form form div {
+.myPage_form form div {
   display: flex;
   margin: 5% 0;
 }
 
-.signUp_form form div input {
+.myPage_form form div input {
   margin-left: 0;
 }
 
-.signUp_form form div label {
+.myPage_form form div label {
   font-size: small;
 }
 
-.signUp_form form button {
+.myPage_form form button {
   border-radius: 5px;
 }
 
-.another_signUp {
+.logout {
   position: relative;
   text-align: center;
   margin-top: 5%;
 }
 
-.another_signUp .another_signUp_title {
+.logout .logout_title {
   background-color: white;
   padding: 0 3%;
   font-size: small;
 }
 
-.another_signUp .another_signUp_title_border {
+.logout .logout_title_border {
   position: absolute;
   width: 100%;
   border-top: 1px solid black;
@@ -69,25 +64,17 @@
   z-index: -1;
 }
 
-.another_signUp_platform {
-  display: flex;
-  justify-content: space-between;
+.logout_platform {
   margin: 5% 0;
 }
 
-.another_signUp_platform button {
+.logout_platform button {
   padding: 3%;
   border-radius: 5px;
 }
 
-.another_signUp_platform .platform_google {
-  color: red;
-  border: 1px solid red;
-  width: 45%;
-}
-
-.another_signUp_platform .platform_facebook {
-  color: blue;
-  border: 1px solid blue;
-  width: 45%;
+.logout_platform .platform_google {
+  color: rgb(0, 102, 255);
+  border: 1px solid rgb(0, 102, 255);
+  width: 100%;
 }

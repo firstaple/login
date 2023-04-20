@@ -11,9 +11,9 @@ const Login = () => {
         <Link to="/signUp">Sign Up</Link>
         <form action="">
           <label>email</label>
-          <input type="email" placeholder="your@email.com" />
+          <input type="email" placeholder="your@email.com" required />
           <label>password</label>
-          <input type="password" placeholder="your password" />
+          <input type="password" placeholder="your password" required />
           <Link>Forgot Password?</Link>
           <div>
             <input type="checkBox" />
