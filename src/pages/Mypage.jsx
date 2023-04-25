@@ -8,11 +8,13 @@ const Mypage = () => {
         <span>Check the user information</span>
         <br />
         <form action="">
-          <label>password</label>
+          <label>confirm password</label>
           <input type="password" placeholder="your password" required />
-          <label>Modify Password</label>
+        </form>
+        <form action="">
+          <label>password to edit</label>
           <input type="password" placeholder="your password" required />
-          <label>Confirm modify Password</label>
+          <label>confirm password to edit</label>
           <input type="password" placeholder="your password" required />
           <div>
             <input type="checkbox" />
