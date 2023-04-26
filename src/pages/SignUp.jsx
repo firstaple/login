@@ -1,7 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../css/SignUp.module.css";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../auth/firebase/initialize";
+import { useState } from "react";
 
 const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const navigate = useNavigate();
+
+  const inputEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const inputPassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const inputConfirm = (e) => {
+    setConfirm(e.target.value);
+  };
+
+  const sendUser = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        console.log(user);
+        alert("가입완료");
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+
+        const errorMessage = error.message;
+        // ..
+        alert("가입실패인데 이유를 알아보련?");
+      });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.signUp_form}>
@@ -9,18 +49,33 @@ const SignUp = () => {
         <span>Do you already have an ID?</span>
         <br />
         <Link to="/">Login</Link>
-        <form action="">
+        <form action="" onSubmit={sendUser}>
           <label>email</label>
-          <input type="email" placeholder="your@email.com" required />
+          <input
+            type="email"
+            placeholder="your@email.com"
+            required
+            onChange={inputEmail}
+          />
           <label>password</label>
-          <input type="password" placeholder="your password" required />
+          <input
+            type="password"
+            placeholder="your password"
+            required
+            onChange={inputPassword}
+          />
           <label>confirm password</label>
-          <input type="password" placeholder="confirm password" required />
+          <input
+            type="password"
+            placeholder="confirm password"
+            required
+            onChange={inputConfirm}
+          />
           <div>
             <input type="checkbox" />
             <label>Log in right away</label>
           </div>
-          <button>Sign-Up</button>
+          {password === confirm && password ? <button>Sign-Up</button> : ""}
         </form>
         <div className={styles.another_signUp}>
           <span className={styles.another_signUp_title}>of sign-up with</span>
