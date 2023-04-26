@@ -35,7 +35,6 @@ const SignUp = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-
         const errorMessage = error.message;
         // ..
         alert("가입실패인데 이유를 알아보련?");

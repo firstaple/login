@@ -1,6 +1,18 @@
+import { signOut } from "firebase/auth";
 import styles from "../css/Mypage.module.css";
+import { auth } from "../auth/firebase/initialize";
 
 const Mypage = () => {
+  const clickLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.myPage_form}>
@@ -26,7 +38,9 @@ const Mypage = () => {
           <span className={styles.logout_title}>logout</span>
           <div className={styles.logout_title_border}></div>
           <div className={styles.logout_platform}>
-            <button className={styles.platform_google}>logout</button>
+            <button className={styles.platform_google} onClick={clickLogout}>
+              logout
+            </button>
           </div>
         </div>
       </div>
