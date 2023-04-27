@@ -11,37 +11,13 @@
   width: 100%;
 }
 
-.myPage_form h1 {
-  margin-bottom: 0;
-}
-
-.myPage_form form {
+.myPage_form .userData_edit {
   display: flex;
   flex-direction: column;
-  margin-top: 5%;
 }
 
-.myPage_form form input {
-  border-radius: 5px;
-  padding-left: 5%;
-  margin-top: 2%;
-}
-
-.myPage_form form div {
-  display: flex;
-  margin: 5% 0;
-}
-
-.myPage_form form div input {
-  margin-left: 0;
-}
-
-.myPage_form form div label {
-  font-size: small;
-}
-
-.myPage_form form button {
-  border-radius: 5px;
+.myPage_form .userData_edit a {
+  color: coral;
 }
 
 .logout {

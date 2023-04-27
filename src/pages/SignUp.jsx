@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../css/SignUp.module.css";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../auth/firebase/initialize";
 import { useState } from "react";
 
@@ -8,6 +8,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [login, setLogin] = useState(false);
   const navigate = useNavigate();
 
   const inputEmail = (e) => {
@@ -22,14 +23,21 @@ const SignUp = () => {
     setConfirm(e.target.value);
   };
 
+  const loginNow = () => {
+    setLogin(true);
+  };
+
   const sendUser = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // ...
         console.log(user);
+        // ...
+        if (!login) {
+          signOut(auth);
+        }
         alert("가입완료");
         navigate("/");
       })
@@ -71,7 +79,7 @@ const SignUp = () => {
             onChange={inputConfirm}
           />
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" onClick={loginNow} />
             <label>Log in right away</label>
           </div>
           {password === confirm && password ? <button>Sign-Up</button> : ""}

@@ -6,11 +6,12 @@ import Mypage from "./pages/Mypage";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./auth/firebase/initialize";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUser, setUser } from "./auth/redux/slice/tockenSlice";
+import { clearUser, setUser } from "./auth/redux/slice/userSlice";
 import { useEffect } from "react";
 
 function App() {
-  const tocken = useSelector((state) => state.tocken.tocken);
+  const user = useSelector((state) => state.user);
+  const tocken = user.tocken;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,9 +19,15 @@ function App() {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
         // ...
-        dispatch(setUser(user.accessToken));
+        dispatch(
+          setUser({
+            tocken: user.accessToken,
+            email: user.email,
+            emailVerified: user.emailVerified,
+            password: user.providerData[0].providerId,
+          })
+        );
         console.log("로그인 상태입니다.");
       } else {
         // User is signed out
@@ -40,7 +47,7 @@ function App() {
       <Route path="/signUp" element={<SignUp />} />
       <Route
         path="/myPage"
-        element={tocken ? <Mypage /> : <Navigate replace to={"/"} />}
+        element={!tocken ? <Navigate replace to={"/"} /> : <Mypage />}
       />
     </Routes>
   );
