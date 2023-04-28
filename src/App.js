@@ -13,10 +13,13 @@ function App() {
   const user = useSelector((state) => state.user);
   const tocken = user.tocken;
   const dispatch = useDispatch();
+  const sessionUser = window.sessionStorage.getItem("user");
+  const localUser = window.localStorage.getItem("user");
+  console.log(tocken);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
+      if (user && (sessionUser || localUser)) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         // ...
@@ -25,7 +28,6 @@ function App() {
             tocken: user.accessToken,
             email: user.email,
             emailVerified: user.emailVerified,
-            password: user.providerData[0].providerId,
           })
         );
         console.log("로그인 상태입니다.");
@@ -44,7 +46,10 @@ function App() {
         path="/"
         element={tocken ? <Navigate replace to={"/myPage"} /> : <Login />}
       />
-      <Route path="/signUp" element={<SignUp />} />
+      <Route
+        path="/signUp"
+        element={tocken ? <Navigate replace to={"/myPage"} /> : <SignUp />}
+      />
       <Route
         path="/myPage"
         element={!tocken ? <Navigate replace to={"/"} /> : <Mypage />}

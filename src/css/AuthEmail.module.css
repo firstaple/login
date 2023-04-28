@@ -9,6 +9,9 @@
 
 .myPage_form {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .myPage_form .userData_edit {
@@ -20,19 +23,19 @@
   color: coral;
 }
 
-.logout {
+.Auth {
   position: relative;
   text-align: center;
   margin-top: 5%;
 }
 
-.logout .logout_title {
+.Auth .Auth_title {
   background-color: white;
   padding: 0 3%;
   font-size: small;
 }
 
-.logout .logout_title_border {
+.Auth .Auth_title_border {
   position: absolute;
   width: 100%;
   border-top: 1px solid black;
@@ -40,16 +43,16 @@
   z-index: -1;
 }
 
-.logout_platform {
+.Auth_platform {
   margin: 5% 0;
 }
 
-.logout_platform button {
+.Auth_platform button {
   padding: 3%;
   border-radius: 5px;
 }
 
-.logout_platform .platform_google {
+.Auth_platform .platform_google {
   color: rgb(0, 102, 255);
   border: 1px solid rgb(0, 102, 255);
   width: 100%;

@@ -46,6 +46,10 @@
 
 .login_form form button {
   border-radius: 5px;
+  color: rgb(0, 102, 255);
+  border: 1px solid rgb(0, 102, 255);
+  width: 100%;
+  padding: 3%;
 }
 
 .another_login {

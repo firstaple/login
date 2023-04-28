@@ -1,13 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "../css/Login.module.css";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase/initialize";
+import { useDispatch } from "react-redux";
+import { setUser } from "../auth/redux/slice/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [saveUser, setSaveUser] = useState();
+  const dispatch = useDispatch();
 
   const inputEmail = (e) => {
     setEmail(e.target.value);
@@ -16,15 +19,28 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
+  const setLocal = (e) => {
+    setSaveUser(e.target.checked);
+  };
+
   const sendUser = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        // ...
+        if (saveUser) {
+          window.localStorage.setItem("user", JSON.stringify(user));
+        } else {
+          window.sessionStorage.setItem("user", JSON.stringify(user));
+        }
+        dispatch(
+          setUser({
+            tocken: user.accessToken,
+            email: user.email,
+            emailVerified: user.emailVerified,
+          })
+        );
         alert("로그인을 환영한다.");
-        navigate("/myPage");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -56,7 +72,7 @@ const Login = () => {
           />
           <Link>Forgot Password?</Link>
           <div>
-            <input type="checkBox" />
+            <input type="checkBox" onChange={setLocal} />
             <label>Remember me</label>
           </div>
           <button>Login</button>
