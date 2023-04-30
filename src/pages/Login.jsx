@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "../css/Login.module.css";
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../auth/firebase/initialize";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { auth, provider } from "../auth/firebase/initialize";
 import { useDispatch } from "react-redux";
 import { setUser } from "../auth/redux/slice/userSlice";
 
@@ -38,6 +43,8 @@ const Login = () => {
             tocken: user.accessToken,
             email: user.email,
             emailVerified: user.emailVerified,
+            name: user.displayName,
+            photoURL: user.photoURL,
           })
         );
         alert("로그인을 환영한다.");
@@ -48,6 +55,44 @@ const Login = () => {
         alert("뭐가 안맞다 닝겐.");
       });
   };
+
+  const googleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        dispatch(
+          setUser({
+            tocken: token,
+            email: user.email,
+            emailVerified: user.emailVerified,
+            name: user.displayName,
+            photoURL: user.photoURL,
+          })
+        );
+        window.localStorage.setItem("google", JSON.stringify(user));
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
+
+  const a = () => {
+    signOut(auth);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.login_form}>
@@ -81,8 +126,12 @@ const Login = () => {
           <span className={styles.another_login_title}>of login with</span>
           <div className={styles.another_login_title_border}></div>
           <div className={styles.another_login_platform}>
-            <button className={styles.platform_google}>Google</button>
-            <button className={styles.platform_facebook}>Facebook</button>
+            <button className={styles.platform_google} onClick={googleLogin}>
+              Google
+            </button>
+            <button className={styles.platform_facebook} onClick={a}>
+              Facebook
+            </button>
           </div>
         </div>
       </div>

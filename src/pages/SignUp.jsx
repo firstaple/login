@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "../css/SignUp.module.css";
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth } from "../auth/firebase/initialize";
+import { auth, provider } from "../auth/firebase/initialize";
 import { useState } from "react";
 
 const SignUp = () => {

@@ -15,11 +15,13 @@ function App() {
   const dispatch = useDispatch();
   const sessionUser = window.sessionStorage.getItem("user");
   const localUser = window.localStorage.getItem("user");
-  console.log(tocken);
+  const googleUSer = window.localStorage.getItem("google");
+
+  console.log(auth);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user && (sessionUser || localUser)) {
+      if (user && (sessionUser || localUser || googleUSer)) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         // ...
@@ -28,6 +30,8 @@ function App() {
             tocken: user.accessToken,
             email: user.email,
             emailVerified: user.emailVerified,
+            name: user.displayName,
+            photoURL: user.photoURL,
           })
         );
         console.log("로그인 상태입니다.");

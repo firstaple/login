@@ -6,17 +6,23 @@ export const userSlice = createSlice({
     tocken: null,
     email: null,
     emailVerified: null,
+    name: null,
+    photoURL: null,
   },
   reducers: {
     setUser: (state, action) => {
       state.tocken = action.payload.tocken;
       state.email = action.payload.email;
       state.emailVerified = action.payload.emailVerified;
+      state.name = action.payload.name;
+      state.photoURL = action.payload.photoURL;
     },
     clearUser: (state) => {
       state.tocken = null;
       state.email = null;
       state.emailVerified = null;
+      state.name = null;
+      state.photoURL = null;
     },
   },
 });

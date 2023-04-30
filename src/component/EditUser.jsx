@@ -8,6 +8,8 @@ const EditUser = ({ auth }) => {
   const [changeEmailState, setChangeEmailState] = useState(false);
   const user = useSelector((state) => state.user);
   const email = user.email;
+  const name = user.name;
+  const photoURL = user.photoURL;
 
   const sendChangePassword = () => {
     if (user.emailVerified) {
@@ -35,6 +37,9 @@ const EditUser = ({ auth }) => {
       deleteUser(auth.currentUser)
         .then(() => {
           // User deleted.
+          window.sessionStorage.removeItem("user");
+          window.localStorage.removeItem("user");
+          window.localStorage.removeItem("google");
           console.log("Succes");
         })
         .catch((error) => {
@@ -51,8 +56,9 @@ const EditUser = ({ auth }) => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        window.sessionStorage.removeItem("user", user);
-        window.localStorage.removeItem("user", user);
+        window.sessionStorage.removeItem("user");
+        window.localStorage.removeItem("user");
+        window.localStorage.removeItem("google");
       })
       .catch((error) => {
         // An error happened.
@@ -64,6 +70,17 @@ const EditUser = ({ auth }) => {
       <div className={styles.myPage_form}>
         <div className={styles.userData_edit}>
           <h1>My page</h1>
+          {name ? (
+            <div style={{ display: "flex" }}>
+              <span>환영합니다! {name}</span>
+              <img
+                src={photoURL}
+                style={{ borderRadius: "50%", width: "10%", marginLeft: "2%" }}
+              />
+            </div>
+          ) : (
+            ""
+          )}
           <Link onClick={sendChangePassword}>
             Change Password <span>{changeEmailState ? "✅" : ""}</span>
           </Link>
