@@ -82,15 +82,3 @@
   padding: 3%;
   border-radius: 5px;
 }
-
-.another_login_platform .platform_google {
-  color: red;
-  border: 1px solid red;
-  width: 45%;
-}
-
-.another_login_platform .platform_facebook {
-  color: blue;
-  border: 1px solid blue;
-  width: 45%;
-}

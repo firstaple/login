@@ -17,8 +17,6 @@ function App() {
   const localUser = window.localStorage.getItem("user");
   const googleUSer = window.localStorage.getItem("google");
 
-  console.log(auth);
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user && (sessionUser || localUser || googleUSer)) {

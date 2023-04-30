@@ -10,6 +10,7 @@ import {
 import { auth, provider } from "../auth/firebase/initialize";
 import { useDispatch } from "react-redux";
 import { setUser } from "../auth/redux/slice/userSlice";
+import PlatformLogin from "../component/PlatformLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -89,10 +90,6 @@ const Login = () => {
       });
   };
 
-  const a = () => {
-    signOut(auth);
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.login_form}>
@@ -126,12 +123,7 @@ const Login = () => {
           <span className={styles.another_login_title}>of login with</span>
           <div className={styles.another_login_title_border}></div>
           <div className={styles.another_login_platform}>
-            <button className={styles.platform_google} onClick={googleLogin}>
-              Google
-            </button>
-            <button className={styles.platform_facebook} onClick={a}>
-              Facebook
-            </button>
+            <PlatformLogin />
           </div>
         </div>
       </div>

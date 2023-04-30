@@ -1,14 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../css/SignUp.module.css";
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth, provider } from "../auth/firebase/initialize";
+import { auth } from "../auth/firebase/initialize";
 import { useState } from "react";
+import PlatformLogin from "../component/PlatformLogin";
+import { useDispatch } from "react-redux";
+import { setUser } from "../auth/redux/slice/userSlice";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [login, setLogin] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const inputEmail = (e) => {
     setEmail(e.target.value);
@@ -36,6 +41,18 @@ const SignUp = () => {
         // ...
         if (!login) {
           signOut(auth);
+          navigate("/");
+        } else {
+          window.sessionStorage.setItem("user", JSON.stringify(user));
+          dispatch(
+            setUser({
+              tocken: user.accessToken,
+              email: user.email,
+              emailVerified: user.emailVerified,
+              name: user.displayName,
+              photoURL: user.photoURL,
+            })
+          );
         }
         alert("가입완료");
       })
@@ -83,11 +100,12 @@ const SignUp = () => {
           {password === confirm && password ? <button>Sign-Up</button> : ""}
         </form>
         <div className={styles.another_signUp}>
-          <span className={styles.another_signUp_title}>of sign-up with</span>
+          <span className={styles.another_signUp_title}>
+            Start with Google or Facebook
+          </span>
           <div className={styles.another_signUp_title_border}></div>
           <div className={styles.another_signUp_platform}>
-            <button className={styles.platform_google}>Google</button>
-            <button className={styles.platform_facebook}>Facebook</button>
+            <PlatformLogin />
           </div>
         </div>
       </div>
