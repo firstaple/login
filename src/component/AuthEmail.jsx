@@ -29,16 +29,17 @@ const AuthEmail = ({ auth }) => {
         <div className={styles.userData_edit}>
           <h1>My page</h1>
           <span>Check the user information</span>
-          <Link onClick={sendAuthEmail}>
-            Send Auth Email <span>{authEmailState ? "✅" : ""}</span>
-          </Link>
+          <div className={styles.userData_edit_auth}>
+            <Link onClick={sendAuthEmail}>Send Auth Email</Link>
+            <span>{authEmailState ? "✅" : ""}</span>
+          </div>
         </div>
 
         <div className={styles.Auth}>
           <span className={styles.Auth_title}>Auth</span>
           <div className={styles.Auth_title_border}></div>
-          <div className={styles.Auth_platform}>
-            <button className={styles.platform_google} onClick={navigateEdit}>
+          <div className={styles.Auth_button_container}>
+            <button className={styles.Auth_button} onClick={navigateEdit}>
               Auth
             </button>
           </div>

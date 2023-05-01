@@ -23,6 +23,10 @@
   color: coral;
 }
 
+.myPage_form .userData_edit div span {
+  animation: fadein 6s ease 3s;
+}
+
 .logout {
   position: relative;
   text-align: center;
@@ -56,4 +60,13 @@
   color: rgb(0, 102, 255);
   border: 1px solid rgb(0, 102, 255);
   width: 100%;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

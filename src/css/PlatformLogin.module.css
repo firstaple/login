@@ -1,11 +1,5 @@
 .platform_google {
   color: red;
   border: 1px solid red;
-  width: 45%;
-}
-
-.platform_facebook {
-  color: blue;
-  border: 1px solid blue;
-  width: 45%;
+  width: 100%;
 }

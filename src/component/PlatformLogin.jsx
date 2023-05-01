@@ -43,7 +43,6 @@ const PlatformLogin = () => {
       <button className={styles.platform_google} onClick={googleLogin}>
         Google
       </button>
-      <button className={styles.platform_facebook}>Facebook</button>
     </>
   );
 };

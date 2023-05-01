@@ -17,6 +17,8 @@ function App() {
   const localUser = window.localStorage.getItem("user");
   const googleUSer = window.localStorage.getItem("google");
 
+  console.log(auth);
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user && (sessionUser || localUser || googleUSer)) {
@@ -32,12 +34,12 @@ function App() {
             photoURL: user.photoURL,
           })
         );
-        console.log("로그인 상태입니다.");
+        console.log("You are logged in.");
       } else {
         // User is signed out
         // ...
         dispatch(clearUser());
-        console.log("로그아웃 상태입니다.");
+        console.log("You are logged out.");
       }
     });
   }, []);

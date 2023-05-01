@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styles from "../css/EditUser.module.css";
 import { deleteUser, sendPasswordResetEmail, signOut } from "firebase/auth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { setUser } from "../auth/redux/slice/userSlice";
 
 const EditUser = ({ auth }) => {
   const [changeEmailState, setChangeEmailState] = useState(false);
@@ -10,6 +11,7 @@ const EditUser = ({ auth }) => {
   const email = user.email;
   const name = user.name;
   const photoURL = user.photoURL;
+  const dispatch = useDispatch();
 
   const sendChangePassword = () => {
     if (user.emailVerified) {
@@ -32,15 +34,24 @@ const EditUser = ({ auth }) => {
   };
 
   const deleteUserBtn = () => {
-    const confirmDelete = window.confirm("진짜 삭제할래?");
+    const confirmDelete = window.confirm("Are you sure you want to delete?");
     if (confirmDelete && user.emailVerified) {
       deleteUser(auth.currentUser)
         .then(() => {
           // User deleted.
+          dispatch(
+            setUser({
+              tocken: user.accessToken,
+              email: user.email,
+              emailVerified: user.emailVerified,
+              name: user.displayName,
+              photoURL: user.photoURL,
+            })
+          );
           window.sessionStorage.removeItem("user");
           window.localStorage.removeItem("user");
           window.localStorage.removeItem("google");
-          console.log("Succes");
+          console.log("has been deleted");
         })
         .catch((error) => {
           // An error ocurred
@@ -48,7 +59,7 @@ const EditUser = ({ auth }) => {
           console.log(error);
         });
     } else {
-      alert("Not Auth Email");
+      alert("Deletion failed");
     }
   };
 
@@ -81,9 +92,10 @@ const EditUser = ({ auth }) => {
           ) : (
             ""
           )}
-          <Link onClick={sendChangePassword}>
-            Change Password <span>{changeEmailState ? "✅" : ""}</span>
-          </Link>
+          <div>
+            <Link onClick={sendChangePassword}>Change Password</Link>
+            <span>{changeEmailState ? "✅" : ""}</span>
+          </div>
           <Link onClick={deleteUserBtn}>Delete user</Link>
         </div>
         <div className={styles.logout}>

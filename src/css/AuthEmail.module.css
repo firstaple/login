@@ -19,8 +19,12 @@
   flex-direction: column;
 }
 
-.myPage_form .userData_edit a {
+.myPage_form .userData_edit div a {
   color: coral;
+}
+
+.myPage_form .userData_edit div span {
+  animation: fadein 6s ease 3s;
 }
 
 .Auth {
@@ -43,17 +47,23 @@
   z-index: -1;
 }
 
-.Auth_platform {
+.Auth_button_container {
   margin: 5% 0;
 }
 
-.Auth_platform button {
+.Auth_button_container .Auth_button {
   padding: 3%;
   border-radius: 5px;
-}
-
-.Auth_platform .platform_google {
   color: rgb(0, 102, 255);
   border: 1px solid rgb(0, 102, 255);
   width: 100%;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
