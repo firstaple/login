@@ -92,7 +92,7 @@ const EditUser = ({ auth }) => {
           ) : (
             ""
           )}
-          <div>
+          <div className={styles.checkSendEmail}>
             <Link onClick={sendChangePassword}>Change Password</Link>
             <span>{changeEmailState ? "✅" : ""}</span>
           </div>

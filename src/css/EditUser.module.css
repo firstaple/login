@@ -23,7 +23,7 @@
   color: coral;
 }
 
-.myPage_form .userData_edit div span {
+.myPage_form .userData_edit .checkSendEmail span {
   animation: fadein 6s ease 3s;
 }
 
