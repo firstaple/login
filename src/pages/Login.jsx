@@ -3,12 +3,13 @@ import styles from "../css/Login.module.css";
 import { useState } from "react";
 import {
   GoogleAuthProvider,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
 import { auth, provider } from "../auth/firebase/initialize";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../auth/redux/slice/userSlice";
 import PlatformLogin from "../component/PlatformLogin";
 
@@ -16,6 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [saveUser, setSaveUser] = useState();
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const inputEmail = (e) => {
@@ -79,7 +81,6 @@ const Login = () => {
             required
             onChange={inputPassword}
           />
-          <Link>Forgot Password?</Link>
           <div>
             <input type="checkBox" onChange={setLocal} />
             <label>Remember me</label>
