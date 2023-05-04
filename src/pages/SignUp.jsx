@@ -1,6 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../css/SignUp.module.css";
-import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "../auth/firebase/initialize";
 import { useState } from "react";
 import PlatformLogin from "../component/PlatformLogin";
@@ -8,12 +12,17 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../auth/redux/slice/userSlice";
 
 const SignUp = () => {
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [login, setLogin] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const inputName = (e) => {
+    setDisplayName(e.target.value);
+  };
 
   const inputEmail = (e) => {
     setEmail(e.target.value);
@@ -39,6 +48,9 @@ const SignUp = () => {
         const user = userCredential.user;
         console.log(user);
         // ...
+        updateProfile(auth.currentUser, {
+          displayName: displayName,
+        });
         if (!login) {
           signOut(auth);
           navigate("/");
@@ -72,6 +84,13 @@ const SignUp = () => {
         <br />
         <Link to="/">Login</Link>
         <form action="" onSubmit={sendUser}>
+          <label>user name</label>
+          <input
+            type="text"
+            placeholder="your name"
+            required
+            onChange={inputName}
+          />
           <label>email</label>
           <input
             type="email"
