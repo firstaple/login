@@ -10,11 +10,10 @@ https://gleeful-crumble-975f8c.netlify.app
 
 ## 주요기능
 
-1. 회원가입
+https://github.com/firstaple/login/assets/112137297/4b5a265b-96b7-4131-afdd-1c6c518757e9
 
+## 보완사항
 
-
-https://github.com/firstaple/login/assets/112137297/3466ae29-5bf7-43fc-a32c-2c74e61c2241
-
-
+- 발송된 이메일 템플릿 작성
+- 회원 관리가 가능한 관리자 계정 생성
 
